@@ -114,7 +114,7 @@ while True:  # Main game loop.
 # dice total to an even (cho) or odd (han) number.
 #
 # *** Modifications by SRPW: The house will collect a 12% fee instead the original version's 10%.
-# If the user gets a 2 or a 7 on a dice roll, they will receive a 10 mon bonus.***
+# f the user gets a 2 or a 7 on a dice roll, they will receive a 10 mon bonus.***
 #
 # You have 5000 mon. How much do you bet? (or QUIT)
 # SRPW: 2000
