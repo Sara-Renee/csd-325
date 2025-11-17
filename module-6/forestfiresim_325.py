@@ -1,3 +1,8 @@
+# Isaac Ellingson
+# Sara White
+# CSD-325
+# Group Assignment 6.2
+
 """Forest Fire Sim, modified by Sue Sampson, based on a program by Al Sweigart
 A simulation of wildfires spreading in a forest. Press Ctrl-C to stop.
 Inspired by Nicky Case's Emoji Sim http://ncase.me/simulating/model/
@@ -18,9 +23,13 @@ except ImportError:
 WIDTH = 79
 HEIGHT = 22
 
+
+
 TREE = 'A'
 FIRE = '@'
 EMPTY = ' '
+#create LAKE variable
+LAKE = '~'
 
 # (!) Try changing these settings to anything between 0.0 and 1.0:
 INITIAL_TREE_DENSITY = 0.20  # Amount of forest that starts with trees.
@@ -80,11 +89,17 @@ def createNewForest():
     forest = {'width': WIDTH, 'height': HEIGHT}
     for x in range(WIDTH):
         for y in range(HEIGHT):
-            if (random.random() * 100) <= INITIAL_TREE_DENSITY:
-                forest[(x, y)] = TREE  # Start as a tree.
+            # define coordinate range for lake to occupy
+            # populate lake first to avoid trees generating in lake area
+            if 25 < x < 45 and 7 < y < 15:
+                forest[(x, y)] = LAKE
+            elif (random.random() * 100) <= INITIAL_TREE_DENSITY:
+                forest[(x, y)] = TREE
             else:
                 forest[(x, y)] = EMPTY  # Start as an empty space.
     return forest
+
+
 
 
 def displayForest(forest):
@@ -98,7 +113,10 @@ def displayForest(forest):
             elif forest[(x, y)] == FIRE:
                 bext.fg('red')
                 print(FIRE, end='')
-          	
+            #set lake to display as blue
+            elif forest[(x, y)] == LAKE:
+                bext.fg('blue')
+                print(LAKE, end='')
             elif forest[(x, y)] == EMPTY:
                 print(EMPTY, end='')
         print()
